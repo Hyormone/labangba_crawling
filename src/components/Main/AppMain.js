@@ -121,7 +121,7 @@ function AppMain() {
                   </div>
                 </td>
                 <td>
-                  <a href="main-table-title" className="main-table-title">
+                  <a href={'https://datalab.labangba.com/' + items[number]['link']} target="_blank" className="main-table-title">
                     <span>{items[number]['title-main']}</span>
                     <span>{items[number]['title-sub']}</span>
                   </a>
