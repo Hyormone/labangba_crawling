@@ -6,18 +6,22 @@ import cheerio from 'cheerio'
 import "assets/css/main.css"
 
 function AppMain() {
+  // 크롤링할 데이터를 담을 배열
   const [items, setItems] = useState([]);
 
+  // 비동기 처리를 통해 웹페이지 크롤링
   async function getHTML() {
     const html = await axios.get(
       'https://datalab.labangba.com/recruit'
     );
 
+    // tbody tr 태그에 있는 텍스트를 불러옴
     const $ = cheerio.load(html.data);
     const elements = $('.Table_table___jpMW tbody tr');
 
     const articleList = []
 
+    // 불러온 텍스트를 담을 객체를 map method를 통해 생성
     elements.map(function (i, element) {
       const scrapingResult = {
         'idx': '',
@@ -44,8 +48,6 @@ function AppMain() {
       scrapingResult['money'] =  String($(element).find('td:nth-of-type(7)').text());
       scrapingResult['goods'] =  String($(element).find('td:nth-of-type(8)').text());
       scrapingResult['link'] =  String($(element).find('td:nth-of-type(2) a').attr('href'));
-
-      console.log(scrapingResult)
 
       articleList.push(scrapingResult)
     })

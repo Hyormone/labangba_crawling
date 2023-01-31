@@ -9,7 +9,7 @@ function AppHeader() {
     <nav>
       <div>
         <header>
-          <a href="">
+          <a href="/">
             <img src={logo} alt="header-logo" />
           </a>
           <div className="header-common"></div>
